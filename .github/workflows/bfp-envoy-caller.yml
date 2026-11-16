@@ -1,0 +1,18 @@
+name: Envoy timeout input replay
+'on': pull_request
+permissions:
+  contents: read
+  packages: read
+jobs:
+  original:
+    uses: ./.github/workflows/_mobile_container_ci.yml
+    with:
+      request: '{"config": {"ci": {"agent-ubuntu": "ubuntu-latest"}}, "request": {"target-branch":
+        "bfp-d06-9c90f9bb0e8c-base", "ref": "bfp-d06-9c90f9bb0e8c-human", "trusted":
+        false, "build-image": {"default": ""}}}'
+      rbe: false
+      trusted: false
+      target: '180'
+      timeout-minutes: 2
+      command: sleep
+      container: ubuntu:24.04
